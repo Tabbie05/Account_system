@@ -9,7 +9,6 @@ interface SidebarProps {}
 
 const Sidebar: FC<SidebarProps> = () => {
   const theme = useTheme();
-
   const [active, setActive] = useState<number | null>(null);
 
   const icons = [
@@ -35,7 +34,7 @@ const Sidebar: FC<SidebarProps> = () => {
       }}
     >
       {/* Logo / Top Circles */}
-      <Box sx={{ position: "relative", width: 20, height: 20, mb: 2,mr:1 }}>
+      <Box sx={{ position: "relative", width: 20, height: 20, mb: 2, mr: 1 }}>
         {[0, 1].map((i) => (
           <Box
             key={i}
@@ -44,30 +43,37 @@ const Sidebar: FC<SidebarProps> = () => {
               width: 20,
               height: 20,
               borderRadius: "50%",
-              border: "3px solid #4caf50",
+              border: `3px solid ${theme.palette.success.main}`,
               left: i * 10,
               top: 0,
             }}
           />
         ))}
       </Box>
+
+      {/* Top Circle Logo */}
       <Box
         sx={{
           borderRadius: "50%",
-          bgcolor: "#4caf50",
+          bgcolor: theme.palette.success.main,
           width: 30,
           height: 30,
           mb: 3,
+          display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          display: "flex",
-          
+          color: theme.palette.success.contrastText,
+          fontWeight: "bold",
         }}
-      >T</Box>
+      >
+        T
+      </Box>
+
+      {/* Divider */}
       <Box
         sx={{
           width: "70%",
-          borderBottom: "1px solid gray",
+          borderBottom: `1px solid ${theme.palette.divider}`,
           mb: 3,
         }}
       />
@@ -81,10 +87,14 @@ const Sidebar: FC<SidebarProps> = () => {
               <IconButton
                 onClick={() => setActive(item.id)}
                 sx={{
-                  color: isActive ? "#ffffff" : "#4caf50",
-                  bgcolor: isActive ? "#4caf50" : "transparent",
+                  color: isActive
+                    ? theme.palette.success.contrastText
+                    : theme.palette.success.main,
+                  bgcolor: isActive ? theme.palette.success.main : "transparent",
                   "&:hover": {
-                    bgcolor: isActive ? "#4caf50" : "#e0f2f1",
+                    bgcolor: isActive
+                      ? theme.palette.success.main
+                      : theme.palette.action.hover,
                   },
                   borderRadius: "50%",
                 }}

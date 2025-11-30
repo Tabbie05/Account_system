@@ -1,3 +1,4 @@
+// theme.js
 import { createTheme } from "@mui/material/styles";
 
 export const lightTheme = createTheme({
@@ -14,6 +15,13 @@ export const lightTheme = createTheme({
     secondary: {
       main: "#f50057",
       contrastText: "#ffffff",
+    },
+    success: {
+      main: "#4caf50",
+      contrastText: "#ffffff",
+    },
+    action: {
+      hover: "#e0f2f1", // hover color for inactive buttons
     },
     text: {
       primary: "#111111",
@@ -43,6 +51,13 @@ export const darkTheme = createTheme({
     secondary: {
       main: "#f48fb1",
       contrastText: "#000000",
+    },
+    success: {
+      main: "#4caf50",
+      contrastText: "#000000",
+    },
+    action: {
+      hover: "#333333",
     },
     text: {
       primary: "#ffffff",
