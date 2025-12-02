@@ -4,6 +4,8 @@ import LanguageTwoToneIcon from "@mui/icons-material/LanguageTwoTone";
 import MessageRoundedIcon from "@mui/icons-material/MessageRounded";
 import VideocamTwoToneIcon from "@mui/icons-material/VideocamTwoTone";
 import AudiotrackTwoToneIcon from "@mui/icons-material/AudiotrackTwoTone";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 interface SidebarProps {}
 
@@ -16,6 +18,11 @@ const Sidebar: FC<SidebarProps> = () => {
     { id: 1, title: "Chat", icon: <MessageRoundedIcon /> },
     { id: 2, title: "Video", icon: <VideocamTwoToneIcon /> },
     { id: 3, title: "Audio", icon: <AudiotrackTwoToneIcon /> },
+  ];
+
+  const bottomIcons = [
+    { id: 4, title: "Settings", icon: <SettingsIcon /> },
+    { id: 5, title: "Logout", icon: <LogoutIcon /> },
   ];
 
   return (
@@ -78,9 +85,46 @@ const Sidebar: FC<SidebarProps> = () => {
         }}
       />
 
-      {/* Sidebar Icons */}
+      {/* Main Sidebar Icons */}
       <Stack spacing={2} alignItems="center">
         {icons.map((item) => {
+          const isActive = active === item.id;
+          return (
+            <Tooltip key={item.id} title={item.title} placement="right">
+              <IconButton
+                onClick={() => setActive(item.id)}
+                sx={{
+                  color: isActive
+                    ? theme.palette.success.contrastText
+                    : theme.palette.success.main,
+                  bgcolor: isActive ? theme.palette.success.main : "transparent",
+                  "&:hover": {
+                    bgcolor: isActive
+                      ? theme.palette.success.main
+                      : theme.palette.action.hover,
+                  },
+                  borderRadius: "50%",
+                }}
+              >
+                {item.icon}
+              </IconButton>
+            </Tooltip>
+          );
+        })}
+      </Stack>
+
+      {/* Bottom Icons */}
+      <Stack
+        spacing={2}
+        alignItems="center"
+        sx={{
+          position: "absolute",
+          bottom: 20,
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
+      >
+        {bottomIcons.map((item) => {
           const isActive = active === item.id;
           return (
             <Tooltip key={item.id} title={item.title} placement="right">
