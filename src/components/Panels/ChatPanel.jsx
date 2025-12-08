@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Avatar,
   TextField,
@@ -8,7 +8,7 @@ import {
   ListItemText,
   ListItemButton,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 
 function ChatPanel() {
   const people = [
@@ -27,14 +27,14 @@ function ChatPanel() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
       {/* Bold Heading */}
-      <Box sx={{ p: 2, mb:-2 }}>
+      <Box sx={{ p: 2, mb: -2 }}>
         <Typography variant="h6" fontWeight="bold">
           MESSAGES
         </Typography>
       </Box>
 
       {/* Search Bar */}
-      <Box sx={{ p: 2 ,mb:-2 }}>
+      <Box sx={{ p: 2, mb: -2 }}>
         <TextField
           fullWidth
           variant="outlined"
@@ -51,8 +51,8 @@ function ChatPanel() {
               <ListItemButton
                 sx={{
                   "&:hover": {
-                    backgroundColor: "#6bee6fff", // green on hover
-                    boxShadow: "0 2px 5px rgba(0,128,0,0.3)", // subtle green shadow
+                    backgroundColor: "#6bee6fff",
+                    boxShadow: "0 2px 5px rgba(0,128,0,0.3)",
                   },
                 }}
               >

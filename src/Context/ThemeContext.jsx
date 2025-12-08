@@ -1,20 +1,14 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import { lightTheme, darkTheme } from '../theme/theme';
 
-type ThemeMode = 'light' | 'dark';
-
-interface ThemeContextProps {
-  mode: ThemeMode;
-  toggleTheme: () => void;
-}
-
-const ThemeContext = createContext<ThemeContextProps>({
+// Create context
+const ThemeContext = createContext({
   mode: 'light',
   toggleTheme: () => {},
 });
 
-// Move this INSIDE the component export or make it a separate export
+// Custom hook to use the theme context
 export const useThemeContext = () => {
   const context = useContext(ThemeContext);
   if (!context) {
@@ -23,22 +17,19 @@ export const useThemeContext = () => {
   return context;
 };
 
-interface ThemeProviderProps {
-  children: ReactNode;
-}
-
-export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [mode, setMode] = useState<ThemeMode>('light');
+// ThemeProvider component
+export function ThemeProvider({ children }) {
+  const [mode, setMode] = useState('light');
 
   useEffect(() => {
-    const savedMode = localStorage.getItem('theme') as ThemeMode | null;
+    const savedMode = localStorage.getItem('theme');
     if (savedMode) {
       setMode(savedMode);
     }
   }, []);
 
   const toggleTheme = () => {
-    const newMode: ThemeMode = mode === 'light' ? 'dark' : 'light';
+    const newMode = mode === 'light' ? 'dark' : 'light';
     setMode(newMode);
     localStorage.setItem('theme', newMode);
   };

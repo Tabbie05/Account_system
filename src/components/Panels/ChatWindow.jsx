@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Box,
   Avatar,
@@ -9,33 +9,40 @@ import {
   InputAdornment,
   Button,
   useTheme,
-} from "@mui/material";
-import VideocamTwoToneIcon from "@mui/icons-material/VideocamTwoTone";
-import InfoTwoToneIcon from "@mui/icons-material/InfoTwoTone";
-import SendIcon from "@mui/icons-material/Send";
-import { toast, ToastContainer } from "react-toastify";
+} from '@mui/material';
+import VideocamTwoToneIcon from '@mui/icons-material/VideocamTwoTone';
+import InfoTwoToneIcon from '@mui/icons-material/InfoTwoTone';
+import SendIcon from '@mui/icons-material/Send';
+import { toast, ToastContainer } from 'react-toastify';
 
-const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages, onSendMessage }) => {
+const ChatWindow = ({
+  name,
+  avatarUrl,
+  status = 'Online',
+  currentUser,
+  messages,
+  onSendMessage,
+}) => {
   const theme = useTheme();
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [messagearr, setmessagearr] = useState([]);
 
   const handleSend = () => {
     setmessagearr([...messagearr, input]);
 
     if (!input.trim()) {
-      toast.error("You cannot send an empty message ❌");
+      toast.error('You cannot send an empty message ❌');
       return;
     }
 
     onSendMessage(input.trim());
 
-    toast.success("Message Sent! 🎉", {
-      position: "bottom-right",
+    toast.success('Message Sent! 🎉', {
+      position: 'bottom-right',
       autoClose: 2000,
     });
 
-    setInput("");
+    setInput('');
   };
 
   console.log(messagearr);
@@ -43,9 +50,9 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
         bgcolor: theme.palette.background.default,
         borderLeft: `1px solid ${theme.palette.divider}`,
       }}
@@ -53,22 +60,22 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
       {/* HEADER */}
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
           p: 2,
           borderBottom: `1px solid ${theme.palette.divider}`,
           bgcolor: theme.palette.background.paper,
           flexShrink: 0,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Avatar src={avatarUrl} alt={name} />
           <Box>
             <Typography
               sx={{
-                fontWeight: "bold",
-                fontSize: "16px",
+                fontWeight: 'bold',
+                fontSize: '16px',
                 color: theme.palette.text.primary,
                 lineHeight: 1.2,
               }}
@@ -77,9 +84,9 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
             </Typography>
             <Typography
               sx={{
-                fontSize: "12px",
+                fontSize: '12px',
                 color: theme.palette.success.main,
-                fontWeight: "600",
+                fontWeight: '600',
                 lineHeight: 1.2,
               }}
             >
@@ -93,7 +100,7 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
             <IconButton
               sx={{
                 color: theme.palette.success.main,
-                "&:hover": { bgcolor: theme.palette.action.hover },
+                '&:hover': { bgcolor: theme.palette.action.hover },
               }}
             >
               <VideocamTwoToneIcon />
@@ -103,7 +110,7 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
             <IconButton
               sx={{
                 color: theme.palette.success.main,
-                "&:hover": { bgcolor: theme.palette.action.hover },
+                '&:hover': { bgcolor: theme.palette.action.hover },
               }}
             >
               <InfoTwoToneIcon />
@@ -116,11 +123,11 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
       <Box
         sx={{
           flex: 1,
-          overflowY: "auto",
+          overflowY: 'auto',
           p: 2,
           bgcolor: theme.palette.background.default,
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
           gap: 1,
         }}
       >
@@ -130,9 +137,9 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
             <Box
               key={msg.id}
               sx={{
-                display: "flex",
-                flexDirection: isMe ? "row-reverse" : "row",
-                alignItems: "flex-end",
+                display: 'flex',
+                flexDirection: isMe ? 'row-reverse' : 'row',
+                alignItems: 'flex-end',
                 gap: 1,
               }}
             >
@@ -154,20 +161,24 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
                   px: 2,
                   py: 1,
                   borderRadius: 2,
-                  maxWidth: "70%",
+                  maxWidth: '70%',
                   boxShadow: 1,
                 }}
               >
                 <Typography
-                  sx={{ fontWeight: "bold", fontSize: "16px", wordBreak: "break-word" }}
+                  sx={{
+                    fontWeight: 'bold',
+                    fontSize: '16px',
+                    wordBreak: 'break-word',
+                  }}
                 >
                   {msg.text}
                 </Typography>
                 <Typography
                   variant="caption"
                   sx={{
-                    display: "block",
-                    textAlign: "right",
+                    display: 'block',
+                    textAlign: 'right',
                     mt: 0.5,
                     color: isMe
                       ? theme.palette.success.contrastText
@@ -198,7 +209,7 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
               e.preventDefault();
               handleSend();
             }
@@ -211,7 +222,7 @@ const ChatWindow = ({ name, avatarUrl, status = "Online", currentUser, messages,
                   variant="contained"
                   color="success"
                   size="small"
-                  sx={{ textTransform: "none" }}
+                  sx={{ textTransform: 'none' }}
                   startIcon={<SendIcon />}
                 >
                   Send
